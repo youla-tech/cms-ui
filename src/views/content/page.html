@@ -1,0 +1,25 @@
+<div id="page">
+    <#assign startIndex=1/> 
+     <#if (pageCount-pageNo+1) gte 5  >
+     <#assign startIndex =pageNo> 
+     <#else>
+     <#assign startIndex =(pageCount+1)-5> 
+     </#if>
+    
+    
+    <#if pageNo lt pageCount >
+    <a href="index_${pageNo+1}.html"><div class="next fr">»</div></a>
+    </#if>
+	<a href="index_${pageCount}.html"><div class="last fr">末页</div></a>
+		<ul class="pagingUl">
+            <#list 1..pageCount as count>
+                  <#if count gte startIndex && count lt startIndex+5 >
+                  <li><a href="${(count == 1 )?string('index.html','index_${count}.html')}"  ${(pageNo ==count)?string('class="activP"','')}>${count}</a></li>
+                  </#if>
+            </#list>
+		</ul>
+	<a href="index.html"><div class="first fr">首页</div></a>
+    <#if pageNo gt 1 >
+    <a href="${(pageNo-1 == 1 )?string('index.html','index_${pageNo-1}.html')}"><div class="prv fr">«</div></a>
+    </#if>
+</div>
